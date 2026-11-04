@@ -23,6 +23,17 @@ Output: `sessions\<date>_<mode>_<label>\<board-ip>\` containing `session.json`,
 `csi.npz` + `csi_amplitudes.csv` (csi mode) or `events.csv` (events mode).
 `replay` adds `replay.csv` and `replay_summary.json`.
 
+Install (once, from this folder):
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+Only `numpy` and `requests` are needed at runtime; you do not need to install
+the ESPectre repo's own (much larger) `requirements.txt`.
+
 Tests: `python -m pytest tests -q`
 
 Commands (PowerShell)

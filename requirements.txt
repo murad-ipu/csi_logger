@@ -1,0 +1,6 @@
+# csi_logger dependencies (versions match the ESPectre repo's requirements.txt)
+numpy==2.5.4      # CSI arrays, csi.npz, and the ESPectre detectors
+requests==2.34.2  # Direct HTTP API polling
+
+# Tests only
+pytest==9.1.1
