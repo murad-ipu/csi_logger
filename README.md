@@ -24,3 +24,23 @@ Output: `sessions\<date>_<mode>_<label>\<board-ip>\` containing `session.json`,
 `replay` adds `replay.csv` and `replay_summary.json`.
 
 Tests: `python -m pytest tests -q`
+
+Commands (PowerShell)
+
+# 60 s connectivity test
+python csi_logger.py events --target <BOARD_IP> --dry-run
+python csi_logger.py csi --target <BOARD_IP> --duration 60 --label conntest
+
+# 10-minute empty-room CSI recording (30 s to leave the room)
+python csi_logger.py csi --target <BOARD_IP> --duration 600 --label empty --start-delay 30
+
+# 5-minute events recording
+python csi_logger.py events --target <BOARD_IP> --duration 300 --label walk
+
+# Offline replay (session folder is printed at start)
+python csi_logger.py replay sessions\<YYYYmmdd_HHMMSS>_csi_empty
+
+# Score against labels.csv
+python evaluate_labels.py --labels labels.csv --events sessions\<session>\<BOARD_IP>\events.csv
+python evaluate_labels.py --labels labels.csv --replay sessions\<session>\<BOARD_IP>\replay.csv --detector lightweight
+For several boards, pass --target IP1 IP2 .... The events dry run uses one of the two SSE slots for up to 12 s.
